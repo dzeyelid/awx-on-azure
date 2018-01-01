@@ -29,4 +29,10 @@ az group create -n <resource group name> -l japaneast
 az group deployment create -g <resource group name> --template-file azure/zuredeploy.json --parameters @azure/arameters.json
 ```
 
-After deployment finished, you need wait a moment until finish provisioning.
+After deployment finished, you can access the vm by http. You can get public IP of the vm by following command.
+
+```bash
+az vm list-ip-addresses -g <resource group name> --query "[].virtualMachine.network.publicIpAddresses[].ipAddress" -o tsv
+```
+
+If first time, you may need wait a moment until finish provisioning.
