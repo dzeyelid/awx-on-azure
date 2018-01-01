@@ -1,7 +1,9 @@
 #!/bin/bash
 
+WORK_USER=$(getent passwd 1000 | cut -f1 -d:)
+
 sudo groupadd docker
-sudo usermod -aG docker $(getent passwd 1000 | cut -f1 -d:)
+sudo usermod -aG docker ${WORK_USER}
 
 sudo apt-get update
 
@@ -30,7 +32,11 @@ sudo apt-get update
 
 sudo apt-get install -y ansible docker-ce
 
-pip install --user docker
+pip install docker-py
 
 sudo systemctl enable docker
 sudo systemctl start docker
+
+git clone https://github.com/ansible/awx.git /home/${WORK_USER}/awx
+cd /home/${WORK_USER}/awx/installer
+ansible-playbook -i inventory install.yml
