@@ -3,6 +3,27 @@ Overview
 
 Deploy [AWX](https://github.com/ansible/awx) environment to Azure VM.
 
+Environment to be deployed
+====
+
+Azure VM
+----
+### OS
+
+- Ubuntu 16.04
+
+### Installed software
+
+- Ansible
+- Docker CE
+- docker-py
+- build-essential
+- git
+
+About AWX
+----
+About AWX, please refer [awx/INSTALL.md at devel · ansible/awx](https://github.com/ansible/awx/blob/devel/INSTALL.md).
+
 How to deploy to Azure
 ====
 
