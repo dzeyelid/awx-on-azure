@@ -1,7 +1,7 @@
 Overview
 ====
 
-Deploy AWX environment to Azure VM.
+Deploy [AWX](https://github.com/ansible/awx) environment to Azure VM.
 
 How to deploy to Azure
 ====
