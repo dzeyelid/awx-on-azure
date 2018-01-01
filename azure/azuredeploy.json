@@ -1,0 +1,340 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmSize": {
+            "type": "string",
+            "defaultValue": "Standard_A2_v2",
+            "allowedValues": [
+                "Basic_A3",
+                "Basic_A4",
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A5",
+                "Standard_A6",
+                "Standard_A7",
+                "Standard_A8",
+                "Standard_A9",
+                "Standard_A10",
+                "Standard_A11",
+                "Standard_A2_v2",
+                "Standard_A2m_v2",
+                "Standard_A4_v2",
+                "Standard_A4m_v2",
+                "Standard_A8_v2",
+                "Standard_A8m_v2",
+                "Standard_B2ms",
+                "Standard_B2s",
+                "Standard_B4ms",
+                "Standard_B8ms",
+                "Standard_D2",
+                "Standard_D3",
+                "Standard_D4",
+                "Standard_D11",
+                "Standard_D12",
+                "Standard_D13",
+                "Standard_D14",
+                "Standard_D2_v2",
+                "Standard_D3_v2",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_D11_v2",
+                "Standard_D12_v2",
+                "Standard_D13_v2",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_D2_v3",
+                "Standard_D2s_v3",
+                "Standard_D32_v3",
+                "Standard_D32s_v3",
+                "Standard_D4_v3",
+                "Standard_D4s_v3",
+                "Standard_D64_v3",
+                "Standard_D64s_v3",
+                "Standard_D8_v3",
+                "Standard_D8s_v3",
+                "Standard_D16_v3",
+                "Standard_D16s_v3",
+                "Standard_DS2",
+                "Standard_DS3",
+                "Standard_DS4",
+                "Standard_DS11",
+                "Standard_DS12",
+                "Standard_DS13",
+                "Standard_DS14",
+                "Standard_DS2_v2",
+                "Standard_DS3_v2",
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_DS11_v2",
+                "Standard_DS12_v2",
+                "Standard_DS13_v2",
+                "Standard_DS13-2_v2",
+                "Standard_DS13-4_v2",
+                "Standard_DS14_v2",
+                "Standard_DS14-4_v2",
+                "Standard_DS14-8_v2",
+                "Standard_DS15_v2",
+                "Standard_E2_v3",
+                "Standard_E2s_v3",
+                "Standard_E4_v3",
+                "Standard_E4s_v3",
+                "Standard_E8_v3",
+                "Standard_E8s_v3",
+                "Standard_E16_v3",
+                "Standard_E16s_v3",
+                "Standard_E32_v3",
+                "Standard_E32-8s_v3",
+                "Standard_E32-16s_v3",
+                "Standard_E32s_v3",
+                "Standard_E64_v3",
+                "Standard_E64-16s_v3",
+                "Standard_E64-32s_v3",
+                "Standard_E64s_v3",
+                "Standard_F2",
+                "Standard_F2s",
+                "Standard_F4",
+                "Standard_F4s",
+                "Standard_F8",
+                "Standard_F8s",
+                "Standard_F16",
+                "Standard_F16s",
+                "Standard_G1",
+                "Standard_G2",
+                "Standard_G3",
+                "Standard_G4",
+                "Standard_G5",
+                "Standard_GS1",
+                "Standard_GS2",
+                "Standard_GS3",
+                "Standard_GS4",
+                "Standard_GS4-4",
+                "Standard_GS4-8",
+                "Standard_GS5",
+                "Standard_GS5-8",
+                "Standard_GS5-16",
+                "Standard_H8",
+                "Standard_H8m",
+                "Standard_H16",
+                "Standard_H16m",
+                "Standard_H16mr",
+                "Standard_H16r",
+                "Standard_L4s",
+                "Standard_L8s",
+                "Standard_L16s",
+                "Standard_L32s",
+                "Standard_NV6",
+                "Standard_NV12",
+                "Standard_NV24"
+            ]
+        },
+        "adminUsername": {
+            "type": "string",
+            "defaultValue": "ansible-awx"
+        },
+        "publicKey": {
+            "type": "securestring"
+        },
+        "vmOsDiskSizeGB": {
+            "type": "int",
+            "defaultValue": 50
+        },
+        "vnetAddressPrefix": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/28"
+        },
+        "subnetAddressPrefix": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/28"
+        },
+        "storageSku": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Standard_ZRS",
+                "Premium_LRS"
+            ]
+        }
+    },
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "vmName": "[concat(resourceGroup().name, '-vm')]",
+        "nicName": "[concat(resourceGroup().name, '-nic')]",
+        "vnetName": "[concat(resourceGroup().name, '-vnet')]",
+        "subnetName": "[concat(resourceGroup().name, '-subnet')]",
+        "nsgName": "[concat(resourceGroup().name, '-nsg')]",
+        "publicIpName": "[concat(resourceGroup().name, '-ip')]",
+        "storageName": "[concat('storage', uniqueString(resourceGroup().name))]"
+    },
+    "resources": [
+        {
+            "name": "[variables('vmName')]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2017-12-01",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('vmSize')]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "16.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "createOption": "FromImage",
+                        "diskSizeGB": "[parameters('vmOsDiskSizeGB')]"
+                    }
+                },
+                "osProfile": {
+                    "computerName": "[variables('vmName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "linuxConfiguration": {
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                                    "keyData": "[parameters('publicKey')]"
+                                }
+                            ]
+                        }
+                    },
+                    "customData": "IyEvYmluL2Jhc2gKCnN1ZG8gZ3JvdXBhZGQgZG9ja2VyCnN1ZG8gdXNlcm1vZCAtYUcgZG9ja2VyICQoZ2V0ZW50IHBhc3N3ZCAxMDAwIHwgY3V0IC1mMSAtZDopCgpzdWRvIGFwdC1nZXQgdXBkYXRlCgpzdWRvIGFwdC1nZXQgaW5zdGFsbCAteSBcCiAgICBhcHQtdHJhbnNwb3J0LWh0dHBzIFwKICAgIGJ1aWxkLWVzc2VudGlhbCBcCiAgICBjYS1jZXJ0aWZpY2F0ZXMgXAogICAgY3VybCBcCiAgICBnaXQgXAogICAgcHl0aG9uLXBpcCBcCiAgICBweXRob24tc2V0dXB0b29scyBcCiAgICBzb2Z0d2FyZS1wcm9wZXJ0aWVzLWNvbW1vbgoKcGlwIGluc3RhbGwgLS11cGdyYWRlIC0tdXNlciBwaXAgc2V0dXB0b29scwoKY3VybCAtZnNTTCBodHRwczovL2Rvd25sb2FkLmRvY2tlci5jb20vbGludXgvdWJ1bnR1L2dwZyB8IHN1ZG8gYXB0LWtleSBhZGQgLQpzdWRvIGFwdC1rZXkgZmluZ2VycHJpbnQgMEVCRkNEODgKc3VkbyBhZGQtYXB0LXJlcG9zaXRvcnkgXAogICAgImRlYiBbYXJjaD1hbWQ2NF0gaHR0cHM6Ly9kb3dubG9hZC5kb2NrZXIuY29tL2xpbnV4L3VidW50dSBcCiAgICAkKGxzYl9yZWxlYXNlIC1jcykgXAogICAgc3RhYmxlIgoKc3VkbyBhcHQtYWRkLXJlcG9zaXRvcnkgLXkgcHBhOmFuc2libGUvYW5zaWJsZQoKc3VkbyBhcHQtZ2V0IHVwZGF0ZQoKc3VkbyBhcHQtZ2V0IGluc3RhbGwgLXkgYW5zaWJsZSBkb2NrZXItY2UKCnBpcCBpbnN0YWxsIC0tdXNlciBkb2NrZXIKCnN1ZG8gc3lzdGVtY3RsIGVuYWJsZSBkb2NrZXIKc3VkbyBzeXN0ZW1jdGwgc3RhcnQgZG9ja2Vy"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')), '2017-10-01').primaryEndpoints.blob]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "[variables('vnetName')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2017-10-01",
+            "location": "[variables('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('vnetAddressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnetAddressPrefix')]"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[variables('nicName')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2017-10-01",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpName'))]"
+            ],
+            "properties": {
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+                },
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnetName'))]"
+                            },
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpName'))]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[variables('publicIpName')]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2017-10-01",
+            "location": "[variables('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+            }
+        },
+        {
+            "name": "[variables('nsgName')]",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2017-10-01",
+            "location": "[variables('location')]",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "default-allow-ssh",
+                        "properties": {
+                            "access": "Allow",
+                            "direction": "Inbound",
+                            "protocol": "Tcp",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "*",
+                            "sourcePortRange": "*",
+                            "priority": 1000
+                        }
+                    },
+                    {
+                        "name": "default-allow-http",
+                        "properties": {
+                            "access": "Allow",
+                            "direction": "Inbound",
+                            "protocol": "Tcp",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "*",
+                            "sourcePortRange": "*",
+                            "priority": 1100
+                        }
+                    }
+
+                ]
+            }
+        },
+        {
+            "name": "[variables('storageName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2017-10-01",
+            "location": "[variables('location')]",
+            "sku": {
+                "name": "[parameters('storageSku')]"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "accessTier": "Hot"
+            }
+        }
+    ],
+    "outputs": {}
+}
