@@ -32,7 +32,7 @@ Then you can deploy like following commands.
 ```bash
 az login
 az group create -n <resource group name> -l japaneast
-az group deployment create -g <resource group name> --template-file azure/zuredeploy.json --parameters @azure/arameters.json
+az group deployment create -g <resource group name> --template-file azure/azuredeploy.json --parameters @azure/parameters.json
 ```
 
 After deployment finished, you can access the vm by http. You can get public IP of the vm by following command.
