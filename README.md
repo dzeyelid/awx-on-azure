@@ -10,7 +10,7 @@ Azure VM
 ----
 ### OS
 
-- Ubuntu 16.04
+- Ubuntu 17.10
 
 ### Installed software
 
