@@ -187,7 +187,7 @@
                     "imageReference": {
                         "publisher": "Canonical",
                         "offer": "UbuntuServer",
-                        "sku": "16.04-LTS",
+                        "sku": "17.10",
                         "version": "latest"
                     },
                     "osDisk": {
@@ -209,7 +209,7 @@
                             ]
                         }
                     },
-                    "customData": "IyEvYmluL2Jhc2gKCldPUktfVVNFUj0kKGdldGVudCBwYXNzd2QgMTAwMCB8IGN1dCAtZjEgLWQ6KQoKc3VkbyBncm91cGFkZCBkb2NrZXIKc3VkbyB1c2VybW9kIC1hRyBkb2NrZXIgJHtXT1JLX1VTRVJ9CgpzdWRvIGFwdC1nZXQgdXBkYXRlCgpzdWRvIGFwdC1nZXQgaW5zdGFsbCAteSBcCiAgICBhcHQtdHJhbnNwb3J0LWh0dHBzIFwKICAgIGJ1aWxkLWVzc2VudGlhbCBcCiAgICBjYS1jZXJ0aWZpY2F0ZXMgXAogICAgY3VybCBcCiAgICBnaXQgXAogICAgcHl0aG9uLXBpcCBcCiAgICBweXRob24tc2V0dXB0b29scyBcCiAgICBzb2Z0d2FyZS1wcm9wZXJ0aWVzLWNvbW1vbgoKcGlwIGluc3RhbGwgLS11cGdyYWRlIC0tdXNlciBwaXAgc2V0dXB0b29scwoKY3VybCAtZnNTTCBodHRwczovL2Rvd25sb2FkLmRvY2tlci5jb20vbGludXgvdWJ1bnR1L2dwZyB8IHN1ZG8gYXB0LWtleSBhZGQgLQpzdWRvIGFwdC1rZXkgZmluZ2VycHJpbnQgMEVCRkNEODgKc3VkbyBhZGQtYXB0LXJlcG9zaXRvcnkgXAogICAgImRlYiBbYXJjaD1hbWQ2NF0gaHR0cHM6Ly9kb3dubG9hZC5kb2NrZXIuY29tL2xpbnV4L3VidW50dSBcCiAgICAkKGxzYl9yZWxlYXNlIC1jcykgXAogICAgc3RhYmxlIgoKc3VkbyBhcHQtYWRkLXJlcG9zaXRvcnkgLXkgcHBhOmFuc2libGUvYW5zaWJsZQoKc3VkbyBhcHQtZ2V0IHVwZGF0ZQoKc3VkbyBhcHQtZ2V0IGluc3RhbGwgLXkgYW5zaWJsZSBkb2NrZXItY2UKCnBpcCBpbnN0YWxsIGRvY2tlci1weQoKc3VkbyBzeXN0ZW1jdGwgZW5hYmxlIGRvY2tlcgpzdWRvIHN5c3RlbWN0bCBzdGFydCBkb2NrZXIKCmdpdCBjbG9uZSBodHRwczovL2dpdGh1Yi5jb20vYW5zaWJsZS9hd3guZ2l0IC9ob21lLyR7V09SS19VU0VSfS9hd3gKY2QgL2hvbWUvJHtXT1JLX1VTRVJ9L2F3eC9pbnN0YWxsZXIKYW5zaWJsZS1wbGF5Ym9vayAtaSBpbnZlbnRvcnkgaW5zdGFsbC55bWw="
+                    "customData": "IyEvYmluL2Jhc2gNCg0KV09SS19VU0VSPSQoZ2V0ZW50IHBhc3N3ZCAxMDAwIHwgY3V0IC1mMSAtZDopDQoNCnN1ZG8gZ3JvdXBhZGQgZG9ja2VyDQpzdWRvIHVzZXJtb2QgLWFHIGRvY2tlciAke1dPUktfVVNFUn0NCg0Kc3VkbyBhcHQtZ2V0IHVwZGF0ZQ0KDQpzdWRvIGFwdC1nZXQgaW5zdGFsbCAteSBcDQphcHQtdHJhbnNwb3J0LWh0dHBzIFwNCmJ1aWxkLWVzc2VudGlhbCBcDQpjYS1jZXJ0aWZpY2F0ZXMgXA0KY3VybCBcDQpnaXQgXA0KcHl0aG9uLXBpcCBcDQpweXRob24tc2V0dXB0b29scyBcDQpzb2Z0d2FyZS1wcm9wZXJ0aWVzLWNvbW1vbg0KDQoNCiNwaXAgaW5zdGFsbCAtLXVwZ3JhZGUgLS11c2VyIHBpcCBzZXR1cHRvb2xzDQpwaXAgaW5zdGFsbCAtLXVwZ3JhZGUgcGlwPT05LjAuMw0KcGlwIGluc3RhbGwgc2V0dXB0b29scw0KDQpjdXJsIC1mc1NMIGh0dHBzOi8vZG93bmxvYWQuZG9ja2VyLmNvbS9saW51eC91YnVudHUvZ3BnIHwgc3VkbyBhcHQta2V5IGFkZCAtDQpzdWRvIGFwdC1rZXkgZmluZ2VycHJpbnQgMEVCRkNEODgNCnN1ZG8gYWRkLWFwdC1yZXBvc2l0b3J5IFwNCiJkZWIgW2FyY2g9YW1kNjRdIGh0dHBzOi8vZG93bmxvYWQuZG9ja2VyLmNvbS9saW51eC91YnVudHUgXA0KICAgICQobHNiX3JlbGVhc2UgLWNzKSBcDQpzdGFibGUiDQoNCnN1ZG8gYXB0LWFkZC1yZXBvc2l0b3J5IC15IHBwYTphbnNpYmxlL2Fuc2libGUNCg0Kc3VkbyBhcHQtZ2V0IHVwZGF0ZQ0KDQpzdWRvIGFwdC1nZXQgaW5zdGFsbCAteSBhbnNpYmxlIGRvY2tlci1jZQ0KDQpwaXAgaW5zdGFsbCBkb2NrZXItcHkNCg0Kc3VkbyBzeXN0ZW1jdGwgZW5hYmxlIGRvY2tlcg0Kc3VkbyBzeXN0ZW1jdGwgc3RhcnQgZG9ja2VyDQoNCmdpdCBjbG9uZSBodHRwczovL2dpdGh1Yi5jb20vYW5zaWJsZS9hd3guZ2l0IC9ob21lLyR7V09SS19VU0VSfS9hd3gNCmNkIC9ob21lLyR7V09SS19VU0VSfS9hd3gvaW5zdGFsbGVyDQphbnNpYmxlLXBsYXlib29rIC1pIGludmVudG9yeSBpbnN0YWxsLnltbA=="
                 },
                 "networkProfile": {
                     "networkInterfaces": [
@@ -318,7 +318,6 @@
                             "priority": 1100
                         }
                     }
-
                 ]
             }
         },
