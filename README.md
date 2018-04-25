@@ -29,7 +29,7 @@ How to deploy to Azure
 
 Deploy by using Azure portal
 ----
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdzeyelid%2Fawx-on-azure%2Fmaster%2Fazure%2Fazuredeploy.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmdobrzyn%2Fawx-on-azure%2Fmaster%2Fazure%2Fazuredeploy.json)
 
 Deploy by using Azure CLI 2.0
 ----
