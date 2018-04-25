@@ -62,4 +62,10 @@ After deployment finished, you can access the vm by http. You can get public IP 
 az vm list-ip-addresses -g <resource group name> --query "[].virtualMachine.network.publicIpAddresses[].ipAddress" -o tsv
 ```
 
+Default password to AWX 
+
+http://ipaddress
+admin/password
+
+
 If first time, you may need wait a moment until finish provisioning.
