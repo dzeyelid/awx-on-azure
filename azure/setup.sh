@@ -32,7 +32,7 @@ sudo apt-get update
 
 sudo apt-get install -y ansible docker-ce
 
-pip install docker-py
+pip install docker --user
 
 sudo systemctl enable docker
 sudo systemctl start docker
